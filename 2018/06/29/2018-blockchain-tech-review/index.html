@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        2018 Blockchain Technical Reviews - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Essays about Everything </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/media/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Alan Li</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tag">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sharding"><span class="toc-text">Sharding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DPoS"><span class="toc-text">DPoS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sidechain"><span class="toc-text">Sidechain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Privacy-Preserving-Computation"><span class="toc-text">Privacy-Preserving Computation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-Observations-on-new-public-blockchain-projects"><span class="toc-text">2018: Observations on new public blockchain projects</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DAG"><span class="toc-text">DAG</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-Observations-on-DApps"><span class="toc-text">2018: Observations on DApps</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Essays about Everything </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        2018 Blockchain Technical Reviews
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2018-06-29 12:09:58</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Blockchain" title="Blockchain">Blockchain</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#English" title="English">English</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>Author: <em>Fuli</em><br>Fuli is a member of the Technical Advisory Committee of FBG Capital<br>Origin: <a href="https://zhuanlan.zhihu.com/p/38153345" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/38153345</a><br>Translator: <em>Alan Li</em><br><strong>Disclaimer: This articles is not an investment advice.</strong></p>
+<hr>
+<p>We have observed that, from mid 2017 to early 2018, expanding blockchain scalability has been the hottest area of the blockchain technical development. There are several categories of on-chain scalability expansion solutions:</p>
+<h2 id="Sharding"><a href="#Sharding" class="headerlink" title="Sharding"></a>Sharding</h2><p>Represented by Projects such as Zilliqa, NUS.<br>Competitive consensus only recognizes transactions on the single longest chain, while cooperative consensus mechanism includes more transactions.<br>Sharding gives TPS an approximate linear bump to a certain degree, as it includes otherwise invalid transactions on non-longest chains in a longest-chain architecture.   </p>
+<h2 id="DPoS"><a href="#DPoS" class="headerlink" title="DPoS"></a>DPoS</h2><p>In DPoS consensus blockchains, trusted nodes are elected to take turns to do ledgering, and everybody else just follows.<br>Such technology has a really hot market rate, but suffers from various of technological controversies:</p>
+<ol>
+<li>Risk of being DDoS’d. </li>
+<li>High TPS might lead to so called “<a href="https://eprint.iacr.org/2015/702.pdf" target="_blank" rel="noopener">the verifier’s dilemma</a>”. The dilemma can be described as that miners are not incentivized to verify each other’s blocks as it impacts their own subsequent block producing. This might cause the system to lose its effectiveness.</li>
+<li>Stakes’ early concentration renders subsequent stakeholder voting meaningless. </li>
+</ol>
+<h2 id="Sidechain"><a href="#Sidechain" class="headerlink" title="Sidechain"></a>Sidechain</h2><p>Sidechain projects such as pchain, cosmos, similar to sharding , have a divide-and-conquer philosophical idea towards scalability. Sidechain projects might focus more on heterogeneous blockchain architecture integration, and cross-chain ecosystem building.<br>Concerns about cross-chain interactions:</p>
+<ul>
+<li>finality of cross-chain transaction</li>
+<li>side chain’s temporary forking</li>
+<li>inconsistent block time between main chain and side chains</li>
+<li>main chain has to ensure an irreversible pegged transaction  </li>
+<li>incompatible ledgering system between main and side chains</li>
+</ul>
+<p>Besides those above-mentioned on-chain scalability solutions, off-chain scalability projects are also another market hot spot. Take last year’s Raiden Network for example, the team has shown in the Devcon3 that it is capable of doing off-chain payment in a realistic scenario.  It is through the combination of on-chain <a href="https://en.bitcoin.it/wiki/Hashed_Timelock_Contracts" target="_blank" rel="noopener">HTLC</a> and off-chain channel that the system achieves high-frequency transactions and periodic (such as daily) on-chain settlements.<br>These kinds of HTLC techniques, originally come from Lightning Network, has some intrinsical flaws. Such as the network asks funds be tied into it before use; a persistent states channels/networks infrastructure for payment transactions whenever possible (<a href="https://www.trustnodes.com/2018/03/26/lightning-network-economically-broken-says-emin-gun-sirer-%E2%80%8F" target="_blank" rel="noopener">reference</a>). </p>
+<p>Projects that tries to improve transaction liquidity (Celer, for example) has emerged this year, which is essential for massive adoption for the network. In a sense, Celer is to lightning network what IP/BGP is to HTTP. </p>
+<p>Another excellent off-chain project emerged this year is <a href="https://liquidity.network/" target="_blank" rel="noopener">Liquidity.Network</a>. It is not only a non-custodian off-chain payment network, but also have a simplified networking layer protocol (reference: <a href="https://eprint.iacr.org/2017/823.pdf" target="_blank" rel="noopener">Revive: Rebalancing Off-Blockchain Payment Networks</a>). We are not going to talk about off-chain scalability solution here as we will have dedicated discussion in the future.</p>
+<p>Those off-chain p2p protocol, essentially requires a supporting network as its infrastructure. Payment layer is not a crypto-graphical channel, but a layer of networks.</p>
+<p>On the other hand, off-chain decentralized exchanges protocols also shares a similarity: they requires a relay network to improve transaction liquidity. Such as relayer nodes in 0x protocol.</p>
+<hr>
+<h2 id="Privacy-Preserving-Computation"><a href="#Privacy-Preserving-Computation" class="headerlink" title="Privacy-Preserving Computation"></a>Privacy-Preserving Computation</h2><p>Privacy-preserving computation is another trend in blockchain technologies in 2018. Unlike public blockchain technologies, the competition of privacy-preserving computation is much less intensive.</p>
+<p>There is a enormous gap between data and data processing. Companies that have computing capabilities such as AI and data-processing, craves for all kinds of data. Meanwhile, data owners of economics, health, personal activities etc, thinks the <strong>data is sensitive</strong>. They even do not trust third-party data analyzing institutions, fearing that those sensitive data might be leaked, or used for other commercial purposes, illegal or not.<br>This, forbids discovering true values within data, rendering huge amount of data unused and unanalyzed.<br>If we combine a <strong>trustless</strong>, autonomous computation environment that is not controlled by any entity, and economical incentives driven by token, we could build an autonomous data marketplace powered by AI and privacy preserving computation.</p>
+<p>Decentralized computation outsourcing is hardly a brand-new concept. 2017 projects like Golem, 1protocol have their answers to the outsourcing problem.  Under the premise of <strong>trustless</strong>, decentralized computation outsourcing strategies have to consider the following 2 problems:</p>
+<ol>
+<li>how does a public-known algorithm analyze open, insensitive data</li>
+<li>how does a public-known algorithm analyze sensitive, private data</li>
+</ol>
+<p>Let’s consider the two problems individually.<br>The first problem considers <strong>verifiable computation</strong>: miners who contribute their computing resources, have to prove themselves that they have indeed completed the outsourced computation task — without cheating by providing forged computing results in order to save costs. Miners have a strong incentive to cheat.</p>
+<p><strong>Verification is at the heart of the problem</strong>. Fundamentally, if <strong>the cost of verifying == the cost of computing</strong>, the outsourcers would have no incentives to distribute computing tasks to a decentralized network — it is cheaper to do by their own.<br> Naturally, verifiers could challenge miners with known, random results (<strong>known-result challenge</strong>).  Once a framing miner is found, and proof is submitted, the convicted will be punished economically.<br>A more advanced method is to introduce <strong>validator</strong>s who, randomly sample and verify outsourced computation, then votes to decide computation results’ validity. Validators could be picked through random processes such as through <strong>VRF</strong> (<a href="https://en.wikipedia.org/wiki/Verifiable_random_function" target="_blank" rel="noopener">verifiable random function</a>). </p>
+<p>The following are some literatures describing the technical details of validation:</p>
+<ol>
+<li><strong>Truebit</strong>’s design for validation. Idea 1: offer rewards for checking computations; idea 2: offer rewards for finding bugs; idea 3: offer a bug bounty and provide expectation that bugs will exist. Reference: <a href="https://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf" target="_blank" rel="noopener">A scalable verification solution for blockchains</a></li>
+<li>Weak clients verifying expensive computations: <a href="https://www.cs.tau.ac.il/~canetti/CRR11.pdf" target="_blank" rel="noopener">Referred Delegation of Computation</a></li>
+</ol>
+<p>Another issue regarding computation verification, is that the cost of computation mining is expensive. In order to reduce costs, a miner is prone to deploy limited-memory (or use HDD swaps) environments, or have several virtual machine instances running simultaneously on a same server. This could cause severe QoS issues.<br>A Proof-of-Computing-Resources mechanism is the prerequisites for latency-sensitive computations, such as the Proof-of-Storage used in IPFS. It is used to ensure:</p>
+<ol>
+<li>miner uses general-purpose computing resources (CPU), as ASIC devices can only be used for specific computing.</li>
+<li>colluded mining: miners do not oversell computing resources such as memory, CPU etc. For example, more than one miners share and exploit a same server. Storage service is also susceptible to colluded mining, (similarly two IPFS miners may share a same storage device).</li>
+<li>defense against attacks of computing resources cheating.</li>
+</ol>
+<p><strong>Proof of computing resources</strong> references:</p>
+<ol>
+<li>Proof of computing resources comes from <a href="https://hal.inria.fr/hal-01650044" target="_blank" rel="noopener">asiacrypt 2017</a></li>
+<li>Ron Rivest and Adi Shamir (RS in RSA) in 1990s <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.110.5709" target="_blank" rel="noopener">RSA</a></li>
+</ol>
+<p>Solutions to above-mentioned problems are prerequisites of privacy-preserving computation for sensitive data. System must ensure sensitive  (such as data of movies, musics, economy, market prediction, etc) <strong>information is not compromised by miners</strong>. So far there are 3 proposed solutions:</p>
+<ol>
+<li>homomorphic cryptography</li>
+<li>enclave</li>
+<li>multi-party computing</li>
+</ol>
+<p>One way to protect data privacy, is to handle computation in a fully controlled, trusted environment. By reviewing the algorithm to ensure data is not compromised while processing. This is usually implemented using Intel SGX, which has remote attestation on its execution environment. The context is self-destroyed immediately whenever the environment is accessed from elsewhere. </p>
+<p>To leverage such technology, we can set up a simple session key (DH) with enclave, and let all the data transmitted be encrypted by such key — only the trusted enclave is capable of deciphering it. The trust is derived from Intel hardware to the enclave. The session key serves as a rally point of the trust, ensuring the derived trust can reachw a larger environment setup (we will omit the details here). A proper way to set up the trust environment is critical.</p>
+<p>Enclave is an simpler solution to the problem, but it is based on Intel’s hardware attestation solution. It might sound too heretic to those who firmly holds a decentralized ideology, though. </p>
+<p>Another type of blockchain projects (represented by <strong>Perlin</strong> <a href="perlin.net">perlin.net</a>) leverages homomorphic encryption to ensure privacy-preserving computing. Simply put, the computation result of the homomorphic-encrypted ciphertext can be deciphered only by the encryptor’s private key.  The deciphered result is the same as a computation upon plaintext.<br>Such platform is totally trustless and do not rely on third party attestations.<br>So far its performance is lower than the enclave solution, but performance of homomorphic algorithms can be optimized by GPU. It is expected that the performance will be comparable to enclave in the future.</p>
+<p>Multi-party computing, represented by Project Enigma, is trustless as well. The delivery of Enigma project is two-step: the team will employ enclave technology in the first phase, and them switch to a MPC solution.</p>
+<p>References for Privacy-preserving computing:</p>
+<ol>
+<li>Homomorphic encryption: <a href="https://www.theregister.co.uk/2018/03/08/ibm_faster_homomorphic_encryption/" target="_blank" rel="noopener">Faster Homomorphic Encryption</a></li>
+<li>Enclave: <a href="https://software.intel.com/en-us/sgx" target="_blank" rel="noopener">Intel SGX</a></li>
+<li>MPC: <a href="https://dl.acm.org/citation.cfm?id=2954230" target="_blank" rel="noopener">multi-party computing</a></li>
+</ol>
+<h2 id="2018-Observations-on-new-public-blockchain-projects"><a href="#2018-Observations-on-new-public-blockchain-projects" class="headerlink" title="2018: Observations on new public blockchain projects"></a>2018: Observations on new public blockchain projects</h2><p>New public blockchain projects are gradually shifting away from DPoS consensus. In a high TPS (&gt;10k) blockchain system, a core problem is that <strong>verifier’s computing power is not proportional to that of block producers</strong>. Projects like Bitcoin, Ethereum do not impose expensive costs to verify transactions. In Ethereum, the world state, including contract and contract-internal data are all executed, processed and verified by nodes within the network.   (Reference: <a href="https://i.stack.imgur.com/afWDt.jpg" target="_blank" rel="noopener">https://i.stack.imgur.com/afWDt.jpg</a>)<br>A single full ledger node is capable of handling transaction verifications of about 2K TPS (assuming each transaction has a computing requirement of 1million cpu cycles).</p>
+<p>In a high TPS environment, lesser powerful nodes are not capable of even catch up with the block producing speed of mainnet. Nervos has proposed an asymmetrical solution: If verifying a smart contract takes less time than executing it, then all the network’s transactions are reduced to a decentralized verifying platform. </p>
+<p>You can easily find a lot of similar cases in computer science. For example, it is much harder to solve a sudoku problem than to verify the answer. (Reference: NP problems  <a href="https://en.wikipedia.org/wiki/NP_(complexity)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/NP_(complexity)</a> ). Unfortunately,  such decision problems only have special solutions (such as halting problem). </p>
+<h3 id="DAG"><a href="#DAG" class="headerlink" title="DAG"></a>DAG</h3><p>Directed Acyclical Graphic (DAG) is yet another direction to develop new public blockchains.<br>References:</p>
+<ol>
+<li><a href="https://arxiv.org/pdf/1805.03870.pdf" target="_blank" rel="noopener">Scaling Nakamoto Consensus to Thousands of Transactions per Second</a></li>
+<li>Avalanche: <a href="https://ipfs.io/ipfs/QmUy4jh5mGNZvLkjies1RWM4YuvJh5o2FYopNPVYwrRVGV?from=groupmessage&amp;isappinstalled=0" target="_blank" rel="noopener">https://ipfs.io/ipfs/QmUy4jh5mGNZvLkjies1RWM4YuvJh5o2FYopNPVYwrRVGV?from=groupmessage&amp;isappinstalled=0</a></li>
+<li>Fantom: <a href="fantom.foundation/">fantom.foundation</a></li>
+</ol>
+<p>We would like to elaborate the core problems of the single-chain architecture here:</p>
+<ol>
+<li>PoW is a competitive consensus which recognizes only the longest chain. Failure to be part of the longest chain contributes nothing to the TPS of the network. </li>
+<li>Due to network transmission latency, to shrink block time or to increase block size means to cause a lot of temporary forks. Also, forking splits PoW hashrates, resulting a more vulnerable network, which is more susceptible to double-spending attacks. </li>
+</ol>
+<p>So the core contribution of DAG, is to introduce a new consensus mechanism that makes blocks and transactions on non-longest chains count as part of the network. Supported by mathematical proofs that after several blocks, included transactions reach probabilistic finality, DAG dramatically improves the TPS of the whole network to a sub 10K level.</p>
+<h2 id="2018-Observations-on-DApps"><a href="#2018-Observations-on-DApps" class="headerlink" title="2018: Observations on DApps"></a>2018: Observations on DApps</h2><p>“Traditional” web companies has been actively experimenting blockchain solutions, including: content distribution networks, user generated contents, lending, IoT, games. Even hardware companies joined in to work on things like mesh communication networks, chip-level encryption, etc.</p>
+<p>Our observation is that: it is still too early to embrace a total decentralized token economy. Integration problems still remain unsolved in real-world situation. For example, trust is still an issue when on-chain and off-chain world interact with each other.</p>
+<p>Institutional investors still favor dapps like crypto-wallets, security etc, as they are the second most important traffic entrance other than centralized exchange. Such dapps will soon become a decentralized exchange entrance. However, their token economy design remains a difficulty.</p>
+<p>Lots of projects have a 2B business model; projects deemed as security token; seasonal projects such as World Cup related might explode in 2018.</p>
+<p>Generally speaking, without robust blockchain infrastructures and a reasonable off-chain data authenticity verifying mechanism, related dapps are essentially leveraging company credit and blockchain to improve asset liquidity and transparency.<br>We will continue to keep observing blockchain’s application in all industrial fields. </p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/lialan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/alan0li">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

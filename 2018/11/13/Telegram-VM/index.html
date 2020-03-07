@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Telegram Virtual Machine -- A Technical Review - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Essays about Everything </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/media/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Alan Li</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tag">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Stack-Machine"><span class="toc-text">The Stack Machine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discussions-on-Programming-Model"><span class="toc-text">Discussions on Programming Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discussions-on-Storage-Management"><span class="toc-text">Discussions on Storage Management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discussions-on-language-semantics"><span class="toc-text">Discussions on language semantics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cells-and-Continuations"><span class="toc-text">Cells and Continuations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusions"><span class="toc-text">Conclusions</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Essays about Everything </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Telegram Virtual Machine -- A Technical Review
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2018-11-13 19:26:57</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Compiler" title="Compiler">Compiler</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Blockchain" title="Blockchain">Blockchain</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#English" title="English">English</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>Author: It is an unfinished technical review of the telegram virtual machine specification. It is not intended to be interpreted as market analysis in anyway.</p>
+<h2 id="The-Stack-Machine"><a href="#The-Stack-Machine" class="headerlink" title="The Stack Machine"></a>The Stack Machine</h2><!-- comparison -->
+<p>Here is a very simple ISA comparison chart among Telegram VM, Ethereum VM and a RISC-V architecture:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Telegram VM</th>
+<th>Ethereum VM</th>
+<th>RISC-V</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Machine Type</td>
+<td>stack machine</td>
+<td>stack machine</td>
+<td>register machine</td>
+</tr>
+<tr>
+<td>Extendable</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Encoding Type</td>
+<td>bitcode</td>
+<td>bytecode</td>
+<td>machine code</td>
+</tr>
+<tr>
+<td>Exception Handling</td>
+<td>exception handler</td>
+<td>unsupported</td>
+<td>exception handler</td>
+</tr>
+<tr>
+<td>Intended Implementation</td>
+<td>Software</td>
+<td>Software</td>
+<td>Hardware</td>
+</tr>
+<tr>
+<td>Instruction Length</td>
+<td>variable length</td>
+<td>fixed length</td>
+<td>variable length</td>
+</tr>
+</tbody>
+</table>
+<p>The Telegram virtual machine is, as the team’s document said, not intended to be implemented as a hardware platform. This gives them some freedom while designing the details of the machine.</p>
+<!-- ISA -->
+<p>When designing the ISA (Instruction Set Architecture) of a machine/virtual machine, one considers the trade off between the performance and efficiency. The main reason that the team has chosen the stack machine model over a register machine model, as the stack machine model has superior code density and extensibility. This is because the cost of storage on the blockchain is millions of times higher than a cloud storage. (In fact, even though it is already extremely expensive, it is still too cheap.) In an effort to minimize the cost of on-chain storage, a design of dense opcodes is the key to reduce cost. But the team did not go too far as to fully minimize the code size, as a size-optimal design will inevitably and greatly increase the complexity of the design and implementation of the virtual machine. The team is trying to strike a balance between achieving good code size and practical virtual machine implementation. </p>
+<!-- number of opcodes -->
+<p>The Ethereum Virtual Machine is a bytecode stack machine, meaning all of its opcodes are one byte in size. With the code space of $2^8$, the instruction set is small and very simple, making the Ethereum VM simple, lightweight. This simplistic design greatly reduced the engineering effort required to make Ethereum smart contracts executable. The Telegram VM, on the other hand, is noticeably more sophisticated in this aspect. TVM has way more opcodes as its opcode length varies from one to three bytes. We expect the effort of development of the TVM will take quite a while, and the work to maintain TVM will be non-trivial as well. </p>
+<!-- extensibility -->
+<p>TVM has a specific status register called <code>codepage</code> register in each of the continuation. the <code>codepage</code> register determines the revision of the opcode that will be used in that specific environment. This creates nearly unlimited extensibility of the instruction set. Introducing a new revision of TVM opcodes will not have to deprecate existing smart contracts deployed on the blockchain, it can simply turn on another codepage so that smart contracts compiled using different revisions of the opcode can coexist on the blockchain, without having compatibility issues. </p>
+<!-- encoding -->
+<p>In order to save the precious on-chain storage space, primitive data types such as integers are </p>
+<h2 id="Discussions-on-Programming-Model"><a href="#Discussions-on-Programming-Model" class="headerlink" title="Discussions on Programming Model"></a>Discussions on Programming Model</h2><!-- determinism -->
+<p>Smart contract execution environment, unlike other execution environment, needs execution determinism – the capability to get the exact same result on different runs on different machines, when given a same starting environment and input arguments. Exact reproducibility is indispensable for blockchain-based smart contracts, otherwise a consensus will be hard to achieve. Usually, the execution of a computer program is deterministic (the big topic of random number generation is actually pseudo random number generation and asks for external entropy input), but if we consider a more complicated execution environment, such as multi-threading, limited memory space, different execution architecture, arithmetic precision, existence of an oracle, etc, execution determinism is difficult to implement.</p>
+<!-- Reference counting -->
+<p>In order to implement determinism, reference counting, instead of a garbage collector, is used in TVM to manage memory. Reference counting as a memory management mechanism uses a reference counter field to track the reachability of each of the created heap objects. When an object’s reference count is not zero, it means that it is reachable by other objects, so its memory is not to be reclaimed. The obvious reason is that reference counting in a single thread environment can achieve determinism, and is the easiest way to implement. A garbage collector, on the other hand, although can be much more efficient, is indeterministic in execution (the <code>deterministic</code> word in the garbage collector related field refers to a different context – determinism of pause time upper bound) and is significantly more complicated to implement. For example, it takes extreme engineering efforts to make a garbage collector of a sophisticated VM such as java VM to achieve maturity. Existing time-proven GC, such as G1 of OpenJDK, or IBM’s J9 GC, all took several major version iterations before it became stable. </p>
+<!-- No circular references, and the "value" paradigm -->
+<p>Inside the Telegram Virtual Machine, there is an “everything is a value” paradigm implemented for their memory object model. Usually in some other programming environment such as Java or Python, when one wants to use an object in another context, one can use a new “pointer” or “reference” to “point to” the object as a handle to be passed to other execution logics. Internally in TVM, making 2 pointers point to a same object is impossible –instead a copy of the object is created (don’t worry about efficiency, there is an optimization called “copy-on-write”, which does lazy copy only when it is needed). In another sense, each object has a sole “owner”. </p>
+<!-- Consequences -->
+<p>The consequence of adapting this paradigm, is that *there will be no circular reference**. A circular reference is a situation where an object <code>A</code> refers to an ancestor of itself. In such cases reference counting would fail to operate due to the fact that object <code>A</code>‘s reference counter will never reach zero, even when it is not being used anymore. Circular reference is a major limitation of the reference counting in memory management. Usually, when a language adapts reference counting, it is up to the developer to avoid creating circular references in their program because it is impossible for static analysis to infer all circular referencing structures in the program. When circular references are completely eliminated, reference counting can free up the occupied space immediately and accurately – when the program is serialized and stored on-chain, this feature saves space.</p>
+<!-- TODO: draw a graph? -->
+<p>The side effect of all those choices and designs, is that we now have a slightly changed programming model. In order to optimize smart contract performance, developers will have to adapt to it, before optimization can remove the additional copies.</p>
+<!-- continuations -->
+<h2 id="Discussions-on-Storage-Management"><a href="#Discussions-on-Storage-Management" class="headerlink" title="Discussions on Storage Management"></a>Discussions on Storage Management</h2><!-- storage paradigm -->
+<p>When data is to be recorded on a persistent storage such as on-chain storage, it needs to be serializable and de-serializable. In Telegram Virtual Machine, It adopts an “everything is a bag of cells” paradigm and deploys a tree-structural scheme (with copy-on-write optimization, the actual representation is a <code>directed acyclic graph (DAG)</code>) to manage storage space. Nodes on in the trees are called <code>cells</code>, and three basic operations: <code>create</code>, <code>serialize</code> and <code>deserialize</code> are defined. </p>
+<!-- serializability -->
+<p>Because TVM needs to execute smart contracts on the TON Blockchain, we have to make sure the code and the data are both serializable and de-serializable (hence “everything is a bag of cells”). In TVM, data are represented in the form of algebraic data types (ADT) which the team adopts from functional programming paradigm. ADT has a very neat feature: an arbitrary value of ADT can be successfully serialized and put on persistent storage, a convenient choice of a blockchain. Also, the TVM code itself is also a complex ADT which in turn, can be represented by a tree of cells as well. As such, TVM has achieved both the code and data serializability.</p>
+<!-- comparison with EVM's serializability -->
+<p>In Ethereum VM, similar to our binary computation, smart contract code is compiled into a string of byte codes and a global symbol table. instead of a tree of cells. In TVM, </p>
+<!-- indexing cells -->
+<p>Each cell has a sequence of hashes associated to it.</p>
+<p><code>representation hash</code> associated, which is the SHA256 of its content in serialized format.</p>
+<h2 id="Discussions-on-language-semantics"><a href="#Discussions-on-language-semantics" class="headerlink" title="Discussions on language semantics"></a>Discussions on language semantics</h2><!-- integers arithmetics -->
+<p>TVM supports native mathematical representation of integers. Although integers are represented in 257-bit format internally, but TVM does not allow implicit/automatic conversions. Arithmetic overflow/underflow are also illegal in TVM – in case overflow/underflow occurs, an arithmetic exception is raised, and an exception handler will take over the control flow and take action. This is a much welcomed semantic feature in smart contract world, where developers has accidentally created a large number of integer overflow cases in their contracts in platforms missing a guard for accidental overflows. </p>
+<!-- Everything as a value -->
+<p>In order to achieve “everything as a value” in the VM, TVM slightly changed the way object is being handling. As is said in the reference: When one tries to create a circular reference between two cells, say <code>A</code> and <code>B</code>, we will obtain a new cell <code>A&#39;</code>, which contains a copy of the data originally stored into cell A along with a reference to cell B, which contains a reference to (the original) cell A. Usually compiler optimizations could mitigate the human cost of the change to the “value-based” of model. In pursuit of performance, it still has some impacts on the way when developers are coding, as is explained in the reference:</p>
+<blockquote>
+<p>In other words, the programmer should always act as if the objects themselves were directly manipulated by stack, arithmetic, and other data transformation primitives, and treat the previous discussion only as an explanation of the high efficiency of the stack manipulation primitives.</p>
+</blockquote>
+<!-- -->
+<h2 id="Cells-and-Continuations"><a href="#Cells-and-Continuations" class="headerlink" title="Cells and Continuations"></a>Cells and Continuations</h2><p>“Continuation” is the primitive value type the TVM used to store smart contract code. It represents the “execution token” for TVM, which is vaguely equivalent to a closure in a traditional programming paradigm. </p>
+<!-- TODO -->
+<p>An unexpected virtue of continuation is that it achieves some parallelism. </p>
+<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><p>In this article we’ve talked about a few areas of the design and the specification of Telegram Virtual Machine. Here are some takeaways we summarized:</p>
+<ul>
+<li>Generally speaking, the TVM adopts the already widely used gas fee schedule as its economic engine for smart contract users. But the TVM specs are more sophisticated than previous effort of building smart contract execution platform such as Ethereum VM, Tron VM, etc. </li>
+<li>Its native supports of serialization/deserialization on persistent storages, execution determinism, efficient memory management all contributes to the adaptability of blockchain.</li>
+<li>We are seeing much more number of native opcodes, a much better encoding scheme, an efficient approach of serialization, etc. We expect those designs will not only reduce the on-chain storage requirement for a program with same functionality, but also will allow TVM to execute more efficiently – hence less cost.<!-- perhaps talks about semantics? -->
+Overall, we are glad that we see the TVM bringing the blockchain-based smart contract execution environment design to a new level. Smart contracts will execute more safely and more efficiently, with native support from the platform. We hope the nascence of TVM will bring acceleration to the development of decentralized applications.</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/lialan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/alan0li">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

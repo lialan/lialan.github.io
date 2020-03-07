@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Binary Translator - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Essays about Everything </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/media/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Alan Li</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tag">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能与优化"><span class="toc-text">性能与优化</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Essays about Everything </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Binary Translator
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2016-06-03 23:19:31</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Compiler" title="Compiler">Compiler</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#中文" title="中文">中文</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>（本文是对知乎问题<a href="https://www.zhihu.com/question/29851229/answer/104193305" target="_blank" rel="noopener">二进制翻译( binary translation )有没有成熟的现实应用？请介绍一下实现方式与性能瓶颈</a>的回复）</p>
+<hr>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Binary Translation是一个非常大的课题，如果要说得详细了可以写一本书。在这里我们仅仅讨论它的皮毛，也仅仅是大致勾画出二进制翻译器的运行结构。解释有错误的地方还请各位斧正。</p>
+<p>二进制翻译器在业界已然有不少产品使用了，这里只是简单介绍几个。BT之中最著名的可能是Qemu了。还有大家手中各式各样的游戏机模拟器也属于BT，其中，Dolphin模拟器是最成熟的，现在最新的Dolphin已不再是解释执行模拟器了，它已然加入了JIT优化。Intel曾开发过在X86 Android上运行ARM Android app的Houdini，但似乎由于性能问题已不再投入。在中国，计算所胡伟武他们正在做龙芯支持X86的工作（Zhang et al.<br>HERMES: A Fast Cross-ISA Binary<br>Translator with Post-Optimization, CGO’15），也相当不错。</p>
+<p>系统地讲，现有的virtual machine在三个层次上：</p>
+<ul>
+<li>机器层面，比如游戏机模拟器</li>
+<li>系统层面，比如X86 Macintosh运行Power架构的Mac app</li>
+<li>应用层面，比如JVM</li>
+</ul>
+<p>一般来说需要Binary translation（以下简称BT）的地方是guest代码与host机器架构不同的时候（也可以是相同的架构，但那样的翻译大多出于安全或优化而言的，如著名HP Dynamo：Bala et al. Dynamo: A Transparent Dynamic Optimization System PLDI’2000）。</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>下面说说常用的二进制转换的方法和需要注意的问题。BT在执行的过程中需要不做任何假定地考虑：</p>
+<ul>
+<li>冯诺依曼结构计算机的数据和指令不分家，BT如何在执行的过程中区分哪些是数据，哪些是指令呢？</li>
+<li>对会自我修改自我引用的的程序如何处理？</li>
+<li>如何处理间接跳转语句？</li>
+<li>等等等等（一时半会想不起来）…</li>
+</ul>
+<p>二进制转换分两种，一种是静态转换，另一种是动态转换（JIT）。静态转换就是将guest machine的二进制可执行代码翻译成host machine的可执行代码，动态转换就是边执行边翻译。对于静态转换来说，由于没有运行时信息，一个不可能解决的问题是在编译时如何知道间接跳转的目标地址。如果需要完美地转换，一个解决办法是自带一个解释器，当程序跳转到未被翻译指令处时，就启动解释器引擎。当然，这样其实还是需要即时转换的; 另一个办法比较极端，因为我们不知道哪些地址是指令，哪些是数据，我们只能假定所有地址都可以是指令来转换。如果是特定用途的BT，不一定需要这么严格的要求。</p>
+<p>对于动态转换来说，翻译间接跳转成为了可能。由于JIT的特性，对自我修改的程序也能够处理了。以一个动态Binary Translator来说，一种实现方式的伪代码是这样的：</p>
+<ol>
+<li>程序执行流交给BT，BT获得跳转目标地址或入口地址(设名字为tgt)</li>
+<li>BT以tgt所指指令为起始收集接下来的每一条指令，直到找到需要翻译的一段guest指令块</li>
+<li>BT对在第2步获得的block分析，优化，生成host代码<ul>
+<li>对每一条跳转语句，如果目标地址next_tgt已经被转译则更改跳转地址至已转译地址</li>
+<li>如果next_tgt未被转译过，则对该跳转语句生成返回第1步的函数调用，并tgt=next_tgt</li>
+<li>对间接跳转，同样生成一段返回BT的调用。BT查表得到next_tgt之后跳转至第1步</li>
+</ul>
+</li>
+<li>BT将生成的block代码段登记在自己系统里</li>
+<li>跳转到生成的host代码执行</li>
+</ol>
+<p>在第二步收集的指令块的方式决定了指令块的结构，同时也决定了第3步能做哪些优化。通常要求生成的指令块是一个super basic block。SBB与basic block不同的地方在于SBB允许指令流在SBB的中间跳转出去，但因为它和BB一样入口唯一中间没有跳转，仍然保持了块内各指令间的依赖关系，故适合做小范围的优化。<br>当发现程序有自我修改的行为的时候，BT需要将被改写的指令块重新转译。通常做法是在被改写的指令块头插入跳转语句转入新生成的指令块。BT还需要同时修改guest code，以防止自引用的代码出错。</p>
+<h1 id="性能与优化"><a href="#性能与优化" class="headerlink" title="性能与优化"></a>性能与优化</h1><p>不要指望BT的性能会非常好，毕竟它是在跑一个虚拟机。一个naïvely写成的BT要是有host machine的四分之一性能就算很不错了。经过优化后，一般可以达到三分之一。Bansal et al.号称他们用super-optimization可以达到平均三分之二的性能（Binary Translation Using Peephole Superoptimizers OSDI’08）。</p>
+<p>BT的一个重要优化是用 Shadow Stack来预测返回指令的跳转地址，这是BT overhead的一个非常大的一块。注意到返回指令虽然是一条间接指令，通常是要用runtime helper来查表搜索跳转地址的，开销非常大。注意到程序运行时的call stack通常都保存得很完整，每一个函数结束时返回的地址通常都是caller的下一条指令。利用这一个稳定的性质，我们可以用一个缓存栈保存程序调用栈的返回地址。那么下一次转译的返回指令就不需要再用helper查找跳转地址了。</p>
+<p>原理如下：<br>对每个call jump指令，在跳转的同时向ShadowStack这个BT维护的栈中压入一个二元组，元素分别为guest的返回地址和host的返回地址（guestPC+1, hostPC+1）。</p>
+<p>对每个return jump指令，查找SS栈顶的二元组。如果guestPC+1正好是返回地址寄存器RA的值，直接跳转到hostPC+1; 否则弹出SS栈顶搜索下一个。如果超过一定次数或者SS栈为空则跳转到helper查表。</p>
+<p>针对不同的guest architecture还可以进行如下的性能优化（仅举例）：<br>像ARM这样的指令集带有PC relative load，即类似ld r1,10(pc)，可以简化。但要考虑程序的自我修改。</p>
+<p>ARM指令都可以以零成本生成一个算术运算结果的status flag，即NZCV flags，用于比较判断。如果host是像龙芯MIPS这样自身不具有状态寄存器的架构，维护NZCV的开销可以算大头，需要将不需要的状态计算删除。</p>
+<p>如果host machine的寄存器数量低于guest machine（如X86模拟ARM），还需要做合理的register mapping，减少不必要的context switching开销。</p>
+<p>至于其余的代码生成优化，大家可以看上文提到的几篇paper。”Virtual Machines: Versatile Platforms for Systems and Processes”这本书也是很好的资料。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/lialan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/alan0li">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

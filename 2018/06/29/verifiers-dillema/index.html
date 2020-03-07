@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        验证者困境和TrueBit的解决方案 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Essays about Everything </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/media/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Alan Li</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tag">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#验证者困境-The-verifier’s-dilemma"><span class="toc-text">验证者困境 (The verifier’s dilemma)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TrueBit验证"><span class="toc-text">TrueBit验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对TrueBit验证机制的一些思考"><span class="toc-text">对TrueBit验证机制的一些思考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文档"><span class="toc-text">参考文档</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Essays about Everything </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        验证者困境和TrueBit的解决方案
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2018-06-29 23:01:05</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Blockchain" title="Blockchain">Blockchain</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#中文" title="中文">中文</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Economics" title="Economics">Economics</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>（此文发布于知乎专栏<a href="https://zhuanlan.zhihu.com/p/38582224" target="_blank" rel="noopener">UNICHAIN技术研究院</a>）</p>
+<hr>
+<h1 id="验证者困境-The-verifier’s-dilemma"><a href="#验证者困境-The-verifier’s-dilemma" class="headerlink" title="验证者困境 (The verifier’s dilemma)"></a>验证者困境 (The verifier’s dilemma)</h1><p>在传统的PoW (Nakamoto Consensus)共识中，矿工为了证明自己的计算能力，需要在确定了区块内的交易内容之后，再寻找一个nonce值，使得它们共同的哈希函数落在某个区间之内。这是一个计算复杂度非常高的操作，以2018年6月的比特币全网算力约40E来计算，相当于约300万台比特大陆S9矿机在同时竞争出块。这也显示了现今竞争PoW计算的困难程度。</p>
+<p>而作为一个验证者节点，它并不需要再次寻找这个nonce值。验证者仅仅需要将新产生的块的nonce值，与块的交易内容合并计算出块的哈希值，再与区块所附带的值作比较，省去了寻找nonce值的过程。对于一个有大小上限的区块协议来说，验算所需要的计算量是恒定的。这样的一个验算操作，即使在手机上甚至都不需要万分之一秒就能完成。</p>
+<p>这是一个非对称式的算力验算证明过程：验算者并不需要很高的算力就可以验证产生区块所使用的算力。另外一个例子是数独。在验证数独问题的解时，我们只需要计算每行每列每个九宫格内的数字是否不重复; 但是在计算数独问题的解的时候，我们需要考虑的是一个搜索范围大很多的问题。</p>
+<p>但是并不是所有的计算问题类型都有非对称的验算方法。智能合约的验算便是一例：图灵完备的计算模型框架下，不存在一个通用的低算力验证的方法。</p>
+<p>以太坊的解决方案是在各个节点上都按交易顺序执行状态机复制（state machine replication）。即智能合约的计算，会在每一个验算节点上重复执行一遍。这样保证了合约的状态的更新，在每个节点上都是一致的，然而这样的设计使得以太坊的智能合约计算成本很高。由于需要在每一个节点上执行智能合约从而验证和更新合约状态，高成本的智能合约验算是以太坊的扩容的一个难点。</p>
+<p>Luu et al. [1]指出，区块链中的验证者存在一个难题：即在现有的区块链经济框架中，验算者验算过程是没有经济激励的。假如验算所需要的算力或时间成本大于一个节点能够承受的值，那么验算者就有作弊的动机：它可以跳过验算而直接承认计算结果;另一方面，假如验算者严格遵守协议的内容进行验算，就有可能受到攻击者的攻击。</p>
+<p>举例来说，假如一个非常复杂的智能合约的执行时间为10秒，如果矿工严格遵守验证规则进行验算计算，那么留给矿工挖矿的时间就会减少10秒。对于一些出块间隔时间较短的区块链协议来说，这种差别可能对矿工来说是致命的。于是，矿工就有可能直接跳过验算的过程，让未验算的区块进入链中。这造成了攻击区块链协议的机会。</p>
+<p>以太坊对timeout的解决方案是引入gas limit机制，以防止验算过程过长。但是这并不能阻止DoS攻击[1]。</p>
+<p>另外，在一个DPoS分布式计算框架下，以4秒为一阶段产生下一个块。那么每个超级节点就需要在这4秒之内：</p>
+<ol>
+<li>对获得的上一个区块进行验算</li>
+<li>打包产生下一个区块</li>
+<li>发送生成的区块给同僚<br>在这里，如果上一个区块包含了一个恶意的智能合约，并且它的计算时间超过4秒，那么如果当前节点严格遵守验证协议的话，就极有可能会失去4秒钟的打包机会，受到攻击。</li>
+</ol>
+<p>这样的攻击问题，在区块链协议的TPS日益增加的情况下，会显得格外明突出。</p>
+<h1 id="TrueBit验证"><a href="#TrueBit验证" class="headerlink" title="TrueBit验证"></a>TrueBit验证</h1><p>TrueBit团队引入了验证者激励机制，试图解决验证者的困境[2]。有趣的是，提出区块链协议中存在验证者困境问题的也是TrueBit团队。</p>
+<p>TrueBit尝试解决以下一个问题：在一个不可信的环境中，如何通过经济激励和相应的协议设计，安全地解决计算扩容问题。如在前一章节中所述，以太坊对于这样一个问题的解决方法，是将合约的计算在网络节点中重放，利用全网的冗余性来保证计算的正确性。</p>
+<p>TrueBit的尝试是从另外一个角度去解决这个扩容问题：计算不再需要在所有的参与节点上重现，而是全网随机推举一个计算者执行相应的计算。另外，网络中存在验证者对结果进行验证，保证计算者的执行是正确的。这样的执行方式类似存在超级节点确权的共识机制。但不同的是，TrueBit的计算和验证方式是去中心化和不可预测的。</p>
+<p>TrueBit的计算过程分为多步。以下是简单的介绍：</p>
+<ol>
+<li>一个成员如果有在链上计算的请求，它会在网络中声明计算任务，并标明计算完成后将获得的奖励。</li>
+<li>通过抽签，全网找到一个计算问题的成员，我们称之为计算者(Solver)。<br>计算者在计算的时候，需要同时准备一个正确的答案和一个错误的答案。<br>另外，还需要将一定量的币，当作stake一起提交。<br>这时候，TrueBit网络会向计算者隐蔽地发出两种不同的请求之一：<ul>
+<li>如果TrueBit网络要求计算者“强制出错”，那么计算者就要把错误的答案发给大家。</li>
+<li>如果网络没有要求计算者“强制出错”，计算者就需要把正确的答案展示出来。</li>
+</ul>
+</li>
+<li>验证者们在得到计算者的答案之后进行计算。<br>如果他们发现在“强制错误”的前提下，计算者提供的答案是错误的，就会获得一笔丰厚的奖金。</li>
+<li>如果验证者们在一定的时间内都没有报告错误，网络就接受这个计算的结果。<br>如果验证者们找到了问题，他们也需要将一定量的币，当作stake连同异议消息一起提交给网络。<br>之后就会进入一个叫做“验证游戏”环节（verification game)。</li>
+</ol>
+<p>在这里面，发出“强制错误”的信息是TrueBit网络的一个特色。全网会每隔一段时间向计算者随机提出一次“强制错误”，并对验证者们隐藏。这样做的目的是为了奖励那些一直在努力进行验证工作的验证者成员们，以保证他们有足够的参与度。“强制错误”同时也对计算请求方和计算者隐藏。</p>
+<p>TrueBit的白皮书[2]中详细，量化地说明了奖金如何而来，数量应该是多少，产生“强制错误”的间隔等因素。有兴趣的读者可以继续阅读他们的白皮书，我们在这里不再详细介绍。</p>
+<p>验证游戏环节是当计算方和验证方有分歧出现时，全网解决计算分岐的方法。它的做法如下：</p>
+<ol>
+<li>计算方和验证方（这里视为挑战者）首先各自对计算有分岐的两个计算结果，划分出c个时间片。</li>
+<li>计算方和验算方同时各自储存下c个时间片末尾的计算中间状态。<br>并产生c个Merkle Tree，表示每个中间状态的状态内容，然后把Merkle Root发到链上。</li>
+<li>挑战者指出第一个存在分岐的位置i，向全网告知。</li>
+<li>裁判首先判断各自均有c个提交的Merkle tree，并且1 &lt;= i &lt;= c。<br>其中如有提交错误信息者立即被判决失去资格。<br>如果没有错误，那么考察第i个时间片的Merkle root是否是不一致的，i-1的merkle root是否是一致。</li>
+<li>既然i是第一个出现分岐的位置，那么，下一步就是缩小分岐。<br>继续在i-1和i之间切割状态，直到找到最小的分岐临界点。</li>
+<li>最后裁判们执行最小的一步计算，确认最终哪一方获胜。<br>获胜方不但可以取回自己押付的stakes，还可以得到失败方的stakes。<br>在规则里体现了TrueBit设计的一个思考：在一个区块链这样的非可信网络上，所有的行为都应该是有成本的。这种成本可以是经济成本，也可以是机会成本。如果没有这样的一种成本，就会降低攻击者的攻击成本 — 这样的协议将会非常容易受到攻击。在TrueBit网络中，押付押金的作法提高了计算者和验证者们的作恶的经济成本，以一种预先防护的方式保护协议不会受到攻击。</li>
+</ol>
+<h1 id="对TrueBit验证机制的一些思考"><a href="#对TrueBit验证机制的一些思考" class="headerlink" title="对TrueBit验证机制的一些思考"></a>对TrueBit验证机制的一些思考</h1><p>TrueBit提出的验证机制提供了解决验证者困境的一种方法。以下是我们对这种机制的一些思考。</p>
+<p>首先，TrueBit使用了一种特制的智能合约虚拟机，它能够记录在某一时间间隔（这我们姑且认为这是可以做到的）处的智能合约虚拟机的执行状态。对于本身计算量非常复杂的智能合约来说，在验证的过程中所需要记录的信息量可以说是非常巨大的。</p>
+<p>在TrueBit的设计中，记录下来每一个中间的状态是为了能够通过二分法在较短时间内找到分叉点，并让众多裁判们直接导入临界状态值，直接计算和判断分叉状态的对错。但是这种想法是不现实的：一个复杂合约的众多中间状态的存储，传输，都会对系统造成不小的压力。</p>
+<p>一个妥协的解决的办法是我们只记录每个状态的哈希值。然后在挑战的时候，首先通过二分法找到第一个出现不同哈希值的位置，然后再让所有裁判从头开始回放执行合约直至分叉处，判别对错。对于这种情况，所需要的验算时间复杂度与智能合约的时间复杂度成正比。</p>
+<p>实际上，白皮书中的计算时间间隔，是一种只在理论上可行的方式。不同的节点在不同的配置下执行速度不会一致。现实中很难做到在程序执行的某个CPU tick上截取程序运行状态。实际可行的方案应该是对在虚拟机上的cycle数进行分段记录。如果为了执行效率的考量选择支持二进制编译语言，如C/C++/Rust等，又实际上增加了快照方案实现的难度，同时也会给节点的安全性带来很大挑战。</p>
+<p>TrueBit的选择是：使用二进制编译代码执行计算任务，当需要解决纠纷时，使用Google Lanai解释器。Lanai架构是一个执行速度非常快的32位，顺序发射处理器架构，这使得Lanai解释器简单高效。TrueBit同时使用两种不同的架构极大地增加了实际问题的复杂性。粗略地思考，有如下一些问题需要解决：</p>
+<p>计算任务和验证任务在不同的指令架构上执行，这要求编译器在生成两种不同架构的代码时能够保持代码相同的语义。这是一件非常困难的事情。<br>C/C++这类系统级语言存在着非常多implementation defined的行为。一致性的需求要求编译过程对这种implementation defined的行为统一化处理。这同样是一件非常困难的事情。<br>解释执行效率远远低于编译执行，这使得进行验证游戏所需要的时间远远高于计算耗时（可以达到数百倍的差别）。<br>此外，验证游戏也对执行环境带来要求：为了保证可实施性，它增加了计算代码的的优化难度。</p>
+<p>再次，因为验算者提出异议是一个主动的过程。当一个包含智能合约的区块被产生之后，需要等待一段时间，让验算者提出异议。由于节点算力的不同，并且需要考虑网络传输延迟，这个等待的时间不能够太短。并且，在这个区块没有被验证的前提下，下一个区块也不能够被产生（即使是我们能够以流水线的形式产生下一个区块，实际上也是增加了被攻击的成本）。也就是说，这种验算方式其实增加了出块确认的延迟时间。</p>
+<p>综上所述，TrueBit提供的解决方案是一次对区块链中的各种作恶行为进行一种约束的尝试。对于一个这样极其复杂的问题，它指明了一个新的方向：在对区块链扩容的过程中，单个节点的固有的验算工作量是无法再降低的，我们需要减少全网的验算成本才能够继续提高区块链协议的容量。另外，在TrueBit出现之前，保持全网正确性的验证者们一直都没有获得足够的经济回报，在验算需求不断增大的情况下，这将会是协议容易被攻击的弱点。需要引入对验证者的经济激励才能保证网络的正确性。</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p>[1] Luu et al, “Demystifying Incentives in the Consensus Computer“ <a href="https://eprint.iacr.org/2015/702.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2015/702.pdf</a></p>
+<p>[2] Teutsch et al, “A scalable verification solution for blockchains” <a href="https://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf" target="_blank" rel="noopener">https://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/lialan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/alan0li">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        交易费用经济学（一）-- 基础 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Essays about Everything </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/media/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Alan Li</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tag">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#公共资源困境"><span class="toc-text">公共资源困境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#交易费的历史"><span class="toc-text">交易费的历史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#限额交易和庇古税"><span class="toc-text">限额交易和庇古税</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Essays about Everything </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        交易费用经济学（一）-- 基础
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2018-08-21 08:59:26</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Blockchain" title="Blockchain">Blockchain</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#中文" title="中文">中文</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Economics" title="Economics">Economics</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>注：本文参考了Vitalik Buterin<a href="https://vitalik.ca/files/Transaction%20fee%20economics.pdf" target="_blank" rel="noopener">关于交易费的演讲</a>的思路和内容。</p>
+<hr>
+<h1 id="公共资源困境"><a href="#公共资源困境" class="headerlink" title="公共资源困境"></a>公共资源困境</h1><p>1968年，美国学者哈定（Garrett Hardin）发表了著名的文章<a href="http://science.sciencemag.org/content/sci/162/3859/1243.full.pdf" target="_blank" rel="noopener">《公地悲剧》(“The Tragedy of the Commons”)</a>。他用博弈理论讲述了这样一个故事（引用Wikipedia中关于<a href="https://zh.wikipedia.org/wiki/%E5%85%AC%E5%9C%B0%E6%82%B2%E5%8A%87" target="_blank" rel="noopener">公地悲剧的介绍</a>）：</p>
+<blockquote>
+<p>公共草地上，有一群牧羊人，每一個牧羊人都想要多獲利一些，所以某個牧羊人就帶了大量的羊來放牧，雖然他知道過度放牧，草地可能會承受不住。但他依然獲利了，而後所有的牧羊人都跟進，所以草地牧草耗竭，悲劇因而發生了。<br>…<br>他举出一个牧羊人与牧场资源的假设性例子以解释他的论点：牧羊人应该极大化他的牧场，并且尽可能的增加他的羊群。而每增加一头羊，皆会带来正面与负面的影响：</p>
+</blockquote>
+<blockquote>
+<p>正面：牧羊人可以从增加的羊只上获得所有的利润<br>负面：牧场的承载力因为额外增加的羊只有所耗损</p>
+</blockquote>
+<blockquote>
+<p>然而，牧场理论的关键性在于这两者的代价并非平等：牧羊人获得所有的利益，但是资源的亏损却是转嫁到所有牧羊人的身上。因此，就理性观点考量，每一位牧羊人势必会衡量如此的效用，进而增加一头头的羊只。但是当所有的牧羊人皆做出如此的结论，并且无限制的放牧时，牧场负载力的耗损将是必然的后果。于是每一个个体依照理性反应所做出的决定将会相同，毕竟获得的利益将永远大于利益的耗损。而无限制的放牧所导致的损失便是外部性的一个例子。</p>
+</blockquote>
+<blockquote>
+<p>由于这样的个体行为是可预见的，并且将持续发生，因此Hardin称之为“悲剧”：“持续进行，永无休止的悲剧”。从哈丁的假设出发，可以发现追求自我利益的行动并不会促进公共利益。</p>
+</blockquote>
+<p>Hardin如是说：</p>
+<blockquote>
+<p>“Ruin is the destination toward which all men rush, each pursuing his own best interest in a society that believes in the freedom of the commons. Freedom in a commons brings ruin to all.”<br>（”当所有人都相信公地（资源）是自由的，而不断地为个人利益最大化而争抢资源时，毁灭是我们的终点。资源的自由带来的是毁灭。”）</p>
+</blockquote>
+<p>究其原因，是个体不受限制地根据自身利益最大化原则使用公有资源时会产生负的外部性。个体的经济活动忽视了总体社会成本的提高，因此它对整个社会的影响就不再是零和游戏。所以，对公众无限制地开放公有资源造成的会是对资源的滥用。要解决这个公地悲剧，我们必须要想办法抵销使用区块资源时所产生的负的外部性的影响。</p>
+<h1 id="交易费的历史"><a href="#交易费的历史" class="headerlink" title="交易费的历史"></a>交易费的历史</h1><p>中本聪是第一个考虑在区块链上加入一个交易费用的人。2008年底James Donald在质疑比特币的经济模型时提出，比特币要解决的一个经济问题是通胀，然而在一个p2p记帐网络中如果不解决记帐的费用来源问题，网络是没有经济模型能够自主运行起来的。但是如果记帐的费用是由挖矿（seigniorage）来支付的话，整个系统又会需要有通胀。从宏观角度来看，比特币网络的运转需要内在的刺激。于是中本聪提出了在网络中增加用户<a href="https://satoshi.nakamotoinstitute.org/emails/cryptography/9/" target="_blank" rel="noopener">向挖矿者提供转帐费用的激励</a>来解决这个问题。中本聪认为，在比特币网络分发了足够多的比特币之后，网络会完全由交易费用维持，并能够保持无通胀地运行。</p>
+<p>交易费除了可以激励经济体自我运转，它的另外一个作用是防止经济攻击。从微观的角度来看，增加支付交易费使得每个用户使用区块链资源的成本从极低上升到不可忽视，进而限制了用户影响公共资源的能力。于是，恶意用户试图通过大量占用公共资源进行denial-of-service攻击的成本也就大大提高了。比如说，最近NEO网络就受到了垃圾攻击(spam attack)的影响。为了激励用户使用，NEO规定”<a href="http://docs.neo.org/zh-cn/sc/systemfees.html" target="_blank" rel="noopener">目前转账交易没有手续费（每个区块仅限21个交易）。…每个智能合约在每次执行过程中有10 GAS 的免费额度…</a>“。于是，<a href="https://neonewstoday.com/general/neo-blockchain-experiences-transaction-spam-attack/" target="_blank" rel="noopener">这个经济模型漏洞就被人利用了</a>，迫使<a href="https://medium.com/neo-smart-economy/annocements-about-attack-transactions-in-neo-9fd7409fb3c6" target="_blank" rel="noopener">NEO委员会不得不提出改变交易手续费规则</a>。再比如说，如果矿工收不到手续费，他们就可能不愿意去打包传进来的交易请求。这使得矿工会随意产出不带交易的块，甚至放入无意义的交易充斥区块空间。也就是说，交易费既能够吸引矿工节点参与网络建设，又能够防止他们对网络进行攻击。</p>
+<p>当一笔交易被矿工记录在由矿工生成的区块上之后，这笔交易会被广播至全网的其它节点。于是我们发现，虽然全网的节点都承担了记录交易的责任，但是只是挖出区块的矿工获得了交易的手续费。不仅如此，不但这笔被记录了的交易增加了节点当下的存储负担，它也增加了节点将来的存储负担–节点要永久保存这个记录。甚至，新加入的节点也需要承担这个记录的责任。也就是说，每一笔交易对全网节点的现在和将来都产生了交易之外的社会成本，而这个成本并没有被价格所展现。</p>
+<h1 id="限额交易和庇古税"><a href="#限额交易和庇古税" class="headerlink" title="限额交易和庇古税"></a>限额交易和庇古税</h1><p>在发现这个问题之后，Vitalik很自然地提出了一个经济学问题：对于每笔交易所产生的外部性（未承担的社会成本），如何使之内部化？即如何让这个交易产生的额外社会成本变成私人的成本，使内外的影响达到平衡？要解决将未考虑的额外社会的成本加入系统中来的问题，可以有两种实现方式。</p>
+<p>第一种方法是限额交易（cap-and-trade）。即给区块链的资源使用设一个上限，让资源活消耗的增加跟上软硬件基础设施性能的增长。在现实世界中，实施的办法就是规定难度自动调整，约每10分钟产生一个新块，每个块的大小不超过1MB。</p>
+<p>第二种方法是引入庇古税（Pigouvian Tax）。庇古税解决外部性的方法是对产生外部性主体的经济行为征税。在区块链的上下文里，交易手续费即是一种庇古税。但是，仅向矿工支付交易手续费并不是一个很好的税制，甚至谈不上是庇古税：首先交易费没有损耗，矿工可以和交易者合谋，产生新的经济攻击方式（我们会在下一篇文章里讨论）；其次，交易费的受益者只有矿工一个人，还缺少一个调节全网成本的机制。</p>
+<hr>
+<p>在下一章我们会讨论Vitalik会如何设计交易费机制，以及以太坊的其它问题。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/lialan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/alan0li">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

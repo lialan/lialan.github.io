@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Project NuCypher -- its staking economics - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Essays about Everything </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/media/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Alan Li</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tag">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NuCypher的介绍"><span class="toc-text">NuCypher的介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#项目简介"><span class="toc-text">项目简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挖矿协议简介"><span class="toc-text">挖矿协议简介</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#讨论"><span class="toc-text">讨论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#挖矿机制的设计"><span class="toc-text">挖矿机制的设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通胀分析"><span class="toc-text">通胀分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#矿工的挖矿策略"><span class="toc-text">矿工的挖矿策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Staking可以适用的应用场景"><span class="toc-text">Staking可以适用的应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挑战者的角色"><span class="toc-text">挑战者的角色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Staking模式的适用性"><span class="toc-text">Staking模式的适用性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-text">综述</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Essays about Everything </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Project NuCypher -- its staking economics
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2018-08-16 08:59:26</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Blockchain" title="Blockchain">Blockchain</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#中文" title="中文">中文</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Economics" title="Economics">Economics</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>本文首先介绍了NuCypher项目的基本情况，以及项目的挖矿机制。文章的第二部分讨论了staking这种挖矿机制方案的设计，用途等。</p>
+<hr>
+<h1 id="NuCypher的介绍"><a href="#NuCypher的介绍" class="headerlink" title="NuCypher的介绍"></a>NuCypher的介绍</h1><h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><blockquote>
+<p>NuCypher KMS是一个分布式密钥管理系统(KMS)，提供基于加密和密码学的权限控制服务。不像中心化的KMS提供的服务，它不需要信任服务提供商，并且它能够在公共网络上任意数量的参与者之间共享私有数据，使用代理重加密技术来代理解密权限，这是传统对称加密和公钥加密方案不能实现的。</p>
+</blockquote>
+<blockquote>
+<p>传统上，中心化KMS服务商有：亚马逊云HSM，谷歌云KMS，微软Azure Key Vault和TrueVault等，在使用这些应用时，需要对这些中心服务提供商设置不适当的信任级别，这对于安全性至关重要的应用程序来说可能不合适，而且容易受到单节点攻击。（比如之前币安受到黑客的攻击就属于节点攻击）</p>
+</blockquote>
+<blockquote>
+<p>NuCypher KMS 使用分布式网络移除对中心化服务提供商的信任，使用代理重加密提供密码访问控制，使用代币激励机制保证可靠性，可用性和正确性。由于使用代理重新加密，未加密的对称密钥（能够解密私有数据）绝不会暴露在服务器端，即使被攻破，黑客也只能得到重新加密的密钥，并且对文件的访问仍然受到保护。</p>
+</blockquote>
+<blockquote>
+<p>应用场景包括：共享加密文件（分布式Dropbox）、端到端加密群聊（加密Slack）、患者控制的电子健康记录（EHR）、分布式数字版权管（DDRM）、盲身份管理、共享凭证和企业密码管理等等。[3]</p>
+</blockquote>
+<p>NuCypher所提供的是一种基于p2p网络的分布式密钥管理服务。与其它系统相比，它不需要一个中心化的服务提供商。为用户加密数据的是p2p网络中的其它用户。这种服务有一个特点，即用户的行为是将自己的数据加密服务交予某些节点运行。那么在用户每次使用服务的时候，网络都应该尽可能保证有能够节点为该用户提供服务，否则网络是不可靠的。</p>
+<h2 id="挖矿协议简介"><a href="#挖矿协议简介" class="headerlink" title="挖矿协议简介"></a>挖矿协议简介</h2><p>团队采用了staking（质押）方式激励用户参与网络。即：</p>
+<ol>
+<li>参与节点先用智能合约锁定一定量的代币，并声明在一定的时间内向全网络提供可靠的服务</li>
+<li>若用户如约在声明的时间内履约，提供并完成了可靠的网络服务，则获得相应的回报</li>
+<li>若用户违约，则需要扣除一定的锁定代币</li>
+</ol>
+<p>在设计激励机制的时候，团队做了如下考虑[2]:</p>
+<ul>
+<li>回报应该与投入成正比例关系</li>
+<li>对于staker来说，投入的stake应与该节点承载的工作量成正比例关系</li>
+<li>网络应该激励staker，让他们更长时间地参与</li>
+<li>主网上线的前期的高通胀对币价的影响应该受控制，使得更多的stakers参与进来</li>
+<li>网络应该激励stakers让他们长期在线</li>
+<li>网络应该对re-staking的行为进行激励，即鼓励stakers在获得staking的回报之后将回报锁定</li>
+<li>网络也应该对短期的staking激励，但是回报率要低一些。</li>
+</ul>
+<p>故针对基本的staking，挖矿协议的内容亦增加了一些：</p>
+<ol start="4">
+<li>对于restaking(即参与staking的节点在完成之后，将本金和利润都全部投入下一期的合约锁定中)，网络将提供更高的回报支持</li>
+<li>考虑到网络和硬件本身就存在不稳定的问题，如服务器或者程序升级等造成的短期服务中断都是常见的。如果一个节点在锁定的过程里有失效的时间，本金将仍然会被锁，直到节点履行了义务为止（如完成了指定的上线时间等）。</li>
+</ol>
+<p>综上所述，NuCypher提出的staking的激励分配方案主要用于解决现有虚拟货币的分配机制中：<br><em>. 激励节点在线向用户提供服务，以及
+</em>. 上线之后长期和短期内出现的通货膨胀问题。</p>
+<hr>
+<h1 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h1><h2 id="挖矿机制的设计"><a href="#挖矿机制的设计" class="headerlink" title="挖矿机制的设计"></a>挖矿机制的设计</h2><p>在关于挖矿的分发机制的设计上，团队首先设定了整体的挖矿框架，通常而言挖矿机制有如下几种大类可以供选择：</p>
+<ol>
+<li>没有挖矿环节，分发是确定的。如众多的基于ERC20协议开发的不增发的代币。</li>
+<li>前期高通胀PoW挖矿，以一定比例衰减。如比特币。</li>
+<li>在一定时间内以一个稳定的速率通胀。如Zilliqa：他们希望挖矿代币的分发在5年内完成，而在5年后网络能不再需要产生新的代币，网络只由转帐的gas费用维持，达到一个动态平衡。</li>
+<li>Proof-of-stake</li>
+<li>混合机制，如PoW和PoS共存</li>
+</ol>
+<p>NuCypher选择了基于经典的初期高收益的挖矿通胀回报早期参与者的挖矿方案，加上proof-of-stake。基于这个大的框架，该项目关于挖矿的设计[2]讨论了在满足以上的需求时，通帐参数的选择问题。需要说明的是，这种讨论的前提是基于PoW加上PoS的的框架而产生的，基于这个前提缩小了通证经济学讨论的范围，并不能够普遍适用于另外几种方案。</p>
+<h2 id="通胀分析"><a href="#通胀分析" class="headerlink" title="通胀分析"></a>通胀分析</h2><p>在[2]中，NuCypher团队的设计者将网络的生命周期以系统上线分初始阶段和后续两个阶段来考虑。原因是在这两个阶段里，有不同的经济模型：前期的高通胀用以激励矿工的参与，而在长远的将来用户数量增加至矿工网络需要通过收取服务费来维持的时候，则需要降低系统的通胀（激励）比例，维持一个动态平衡。另外，两个阶段之间的过渡没有明显的界限。在两个阶段之间币价如何能够有一个平稳的衔接过渡也是一个要讨论的问题。</p>
+<p>在项目的早期就过早地失去矿工社群是每个项目都不希望看到的事情，因此项目前期的激励是非常重要的。但是，上线初期的流通非常小，会容易产生很剧烈的通胀。以ZCash举例来说，项目上线的前几个月内年化率达到了360%，这使得在项目上线后的前几个月跌破了初始价。随着用户社群增加，后来币值才恢复并不断一路飙升。于是，Proof-of-Stake在这里就很适用，它不但要求质押保证金，提高矿工节点放弃之前的服务承诺的成本，还能够锁定币值，减少流通量，减少通胀。一举两得。</p>
+<p>对于比特币而言，代币的供应量试图模拟黄金这样的硬通货的开采速度[9]。对于NuCypher，团队用指数衰减来使得在每一时刻$t$,货币的增量数与仍然未挖出的货币数成正比。用一个统一的代币供应函数去拟合两个不同的系统经济阶段。</p>
+<h2 id="矿工的挖矿策略"><a href="#矿工的挖矿策略" class="headerlink" title="矿工的挖矿策略"></a>矿工的挖矿策略</h2><p>讨论到这里还并不够区分度。如果单一地对staking规定回报力度和方式，则无法对长期和短期锁定的激励有足够的区分。</p>
+<p>下图描述了为激励矿工长期锁定，对矿工锁定期限长短给予的补偿比例[2]。<br><img src="/media/15349929828102.jpg" alt="-w649"><br>可以看到，NuCypher以一年为界限，对于锁定期一年以下的矿工减少补偿，最低可达基准补偿的50%。根据这个曲线我们可以观察到，一个矿工总会是以一年为界限锁定NKMS。</p>
+<p>对于矿工，一般而言会有以下三种挖矿行为：</p>
+<ol>
+<li>在staking周期结束之后，带着收益和本金离场</li>
+<li>在staking周期结束之后，将收益和本金继续质押(restaking)</li>
+<li>每一次staking的时间越来越短(spin down)</li>
+</ol>
+<p>根据不同的需求，矿工有足够的自由度选择适合自己的挖矿策略。对系统而言，代币增发的比例上界就可以在初期确定–上限就是所有的矿工都选择承诺至少一年的锁定期限。当长期锁定的矿工数量减少，整体的代币增发比例也随之减少。</p>
+<p>这样产生了一个动态计算的通胀平衡：如果NuCypher网络用户比较少，币价下跌，则矿工会减少，随之通胀也会减少，抑制币价继续下跌的速度；如果网络用户增多，币值增加，则矿工会增加，随之通胀也会增加，减缓币价波动。</p>
+<h2 id="Staking可以适用的应用场景"><a href="#Staking可以适用的应用场景" class="headerlink" title="Staking可以适用的应用场景"></a>Staking可以适用的应用场景</h2><p>对于需要节点提供availability的项目，可以考虑staking的设计。比如：</p>
+<ol>
+<li>基于闪电网络相关的服务。在闪电网络中，用户之间的每次交易都需要由闪电网络的节点记帐，故需要激励记帐节点。</li>
+<li>基于去中心化的文件存储或者数据库的服务。数据存储项目天然地强调high availability。</li>
+<li>强调节点治理(governance)的项目。代码不是万能的，对于需要人工参与决策，如投票，的内容，需要以某种方式激励委员会的参与度。</li>
+<li>等等等等….</li>
+</ol>
+<p>NuCypher提出的基于PoS的激励方式，寄希望于在解决经济激励问题的同时，能够设计得减少币值的剧烈波动问题。需要说明的是文中讨论的NuCypher所设计的staking的经济激励模式并不普遍适用于所有的区块链项目。在一个不需要强调用户节点在线时间的项目中（如bitcoin)是不应该使用这种复杂的奖励机制的–它会使得项目的设计变得过于复杂。</p>
+<h2 id="挑战者的角色"><a href="#挑战者的角色" class="headerlink" title="挑战者的角色"></a>挑战者的角色</h2><p>NuCypher的白皮书[8]中提到，在一个需要持续提供服务支持的p2p环境下，挑战者是很重要的参与者。过少的挑战者会降低作恶的机会成本，给网络中服务提供者提供作恶的动机和可能性。区块链p2p网络中需要有相应的角色来保证参与的节点的可靠性。TrueBit[5]提出了一种中奖的机制鼓励社区参与监督网络环境的运行。其具体的内容可以参考[6]以及我们之前的讨论[7]。在NuCypher这样的类似的区块链服务框架下，也应该需要相应的挑战者的角色来确保矿工节点不存在怠工问题。NuCypher的白皮书中加入了挑战者的角色，不过它所描述的挑战者的作用是找到“泄漏了一个重加密密钥”的矿工。</p>
+<p>由此我们可以考虑，对一些需要提供availability的项目，除了staking的机制之外，挑战者的角色也可以在经济层面上作为一个监督矿工节点拒绝服务的防范。如在IPFS的经济设计中，仅当读取存储在p2p网络上的文件时用户是需要付费的，而存储不需要付费。这很难保证存储信息在一定时间内的availability问题。Staking和挑战者角色的加入，可能可以改变这种困境。</p>
+<h2 id="Staking模式的适用性"><a href="#Staking模式的适用性" class="headerlink" title="Staking模式的适用性"></a>Staking模式的适用性</h2><p>另外，在staking的细节上，也有可以变化的地方。比如在NuCypher中，我们很难去记录一个矿工在线的时间。但是，我们可以很容易地记录一个矿工所完成的工作量。假如说质押的要求不是在线时间，而是工作量的话，也许会让设计变得更容易一些。但是NuCypher团队并没有选择这样的方案，可能是难以界定单个工作量的大小等。不过，这给了我们一种对staking机制设计多样化的一种启发，可以在以后的设计中使用除时间之外的不同的衡量标准。</p>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>NuCypher的团队认为激励机制，和共识机制，以及治理机制一样是区块链中最重要的三个部分，因此花了很多时间设计相应的经济模型。因为NuCypher的代币还在设计中，还没有测试网络可以公开使用，我们无法知道实际运行的效果是偏向于哪一方面。但是我们在上线初期根据整体代币的锁仓比例，长期锁仓和短期锁仓的矿工的比例，就能较为准确地预测到一年之前的系统通胀比例。这可以作为二级市场投资和一级市场退出时间点选择做一个基本面的分析。</p>
+<hr>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li>[1] MacLane Wilkison, “NuCypher Staking Economics,” NuCypher, August 5, 2018, <a href="https://blog.nucypher.com/nucypher-staking-economics-a7bb56b20716" target="_blank" rel="noopener">https://blog.nucypher.com/nucypher-staking-economics-a7bb56b20716</a>.</li>
+<li>[2] Michael Egorov and MacLane Wilkison, “NuCypher: Mining &amp; Staking Economics,” n.d., 6.</li>
+<li>[3] NuCypher 投资项目测评， <a href="https://kuaibao.qq.com/s/20180319G0OBUS00" target="_blank" rel="noopener">https://kuaibao.qq.com/s/20180319G0OBUS00</a></li>
+<li>[4] NuCypher Contract, <a href="https://github.com/nucypher/nucypher/blob/master/doc/contracts.rst" target="_blank" rel="noopener">https://github.com/nucypher/nucypher/blob/master/doc/contracts.rst</a></li>
+<li>[5] Jason Teutsch and Christian Reitwießner, “A Scalable Veriﬁcation Solution for Blockchains,” n.d., 50.</li>
+<li>[6] Truebit白皮书解读, <a href="https://zhuanlan.zhihu.com/p/36487861" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/36487861</a></li>
+<li>[7] 验证者困境和TrueBit的解决方案, <a href="https://zhuanlan.zhihu.com/p/38582224" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/38582224</a></li>
+<li>[8] Michael Egorov, “NuCypher: A Proxy Re-Encryption Network to Empower Privacy in Decentralized Systems,” n.d., 23.</li>
+<li>[9] Bitcointalk Wiki, <a href="https://en.bitcoin.it/wiki/Controlled_supply#Currency_with_Finite_Supply" target="_blank" rel="noopener">https://en.bitcoin.it/wiki/Controlled_supply#Currency_with_Finite_Supply</a></li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/lialan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/alan0li">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

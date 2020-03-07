@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        On &#34;Canonical Transaction Ordering&#34; - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Essays about Everything </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/media/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Alan Li</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tag">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BTC-BCH区块扩容问题"><span class="toc-text">BTC/BCH区块扩容问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#区块的传播"><span class="toc-text">区块的传播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“Topological-Transaction-Ordering”"><span class="toc-text">“Topological Transaction Ordering”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优化"><span class="toc-text">优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内存池和IBLT"><span class="toc-text">内存池和IBLT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#”Canonical-Transaction-Ordering”"><span class="toc-text">”Canonical Transaction Ordering”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优势"><span class="toc-text">优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Essays about Everything </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        On &quot;Canonical Transaction Ordering&quot;
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2018-11-11 17:37:43</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Blockchain" title="Blockchain">Blockchain</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#中文" title="中文">中文</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="BTC-BCH区块扩容问题"><a href="#BTC-BCH区块扩容问题" class="headerlink" title="BTC/BCH区块扩容问题"></a>BTC/BCH区块扩容问题</h2><p>关于区块扩容，有很多争议。</p>
+<ol>
+<li>增加块大小会降低区块空间的稀缺性，降低交易竞争激烈程度，进而降低交易费用。这显然是矿工不愿意看到的。</li>
+<li>增加块大小会增加区块节点网络和存储的负担，减少参与的节点数量，进而减少已有的共识。</li>
+</ol>
+<p>反对者关于区块扩容最重要的一点论据是：Nakamoto Consensus是无法持续扩容的。我们可以从1MB升级成2MB，然后4MB，8MB。<strong>TODO: fill in the gap.</strong></p>
+<h3 id="区块的传播"><a href="#区块的传播" class="headerlink" title="区块的传播"></a>区块的传播</h3><p>假定两个矿工在同一时间各自产出了一个区块，那么决定网络最终会选择哪一个产出的区块，取决于区块在网络的传播速度和网络的拓补结构。所以当一个矿工挖出一个区块之后，他/她当然想以最快的速度将区块传播出去。</p>
+<p>在现有的P2P框架中，一个验证节点在将一个收到的区块转播出去之前需要验证输入区块的正确性。在验证一个区块是否正确之前，验证节点需要完整接收整个区块的内容。留给验证节点产出下一个区块的平均时间，等于10分钟减去从开始接收区块到验证区块结束所需要的时候。所以，无论是对于产出了区块的节点，还是对于接收到新区块的节点，都希望能够将验证节点的时间缩短。</p>
+<p>我们找到了比特币网络扩容的瓶颈之一。</p>
+<p>开发者们提出了很多种扩容的方案。比如Dietcoin<a href="https://github.com/bitcoin/bips/blob/master/bip-0035.mediawiki" target="_blank" rel="noopener">3</a>。</p>
+<h3 id="“Topological-Transaction-Ordering”"><a href="#“Topological-Transaction-Ordering”" class="headerlink" title="“Topological Transaction Ordering”"></a>“Topological Transaction Ordering”</h3><p>基于UTXO的记帐方式相对于基于帐本的记帐方式有更多的并行性。然而这种并行性并不存在于单个帐户内部。比如说A的帐号有一个比特币，用户同时产生了两笔转出交易至B，C，每笔交易金额都为一个比特币。那么最终B，C谁会获得这个这个比特币是由两笔交易上链的顺序决定的（事实上第二笔交易会是无效的）。另外，我们知道，在一个有效的区块中，交易UTXO的排列构成一个偏序结构。软件规定，在一个区块中，假如同时存在一个A->B的一个UTXO，和一个B->C的UTXO，那么在一个区块里面第一个UTXO必须要出现在第二个UTXO的前面。因此在一个区块之内，各个交易存在偏序关系。保持这种偏序关系的排列叫做”交易的拓补顺序”。</p>
+<p>同时，Merkle Root的计算规则与各叶子节点的顺序有关。<strong>TODO:再细讲原因</strong>Merkle Root的计算规则要求<strong>TODO</strong>。故同一组节点以不同的顺序排放会产生不同的Merkle Root的值。因此我们不但需要知道所有的交易，还需要知道交易的顺序，才能验证一个块是否是合法。</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="内存池和IBLT"><a href="#内存池和IBLT" class="headerlink" title="内存池和IBLT"></a>内存池和IBLT</h3><p>各个节点内部均维护着一个内存池(mempool, <a href="https://github.com/bitcoin/bips/blob/master/bip-0035.mediawiki" target="_blank" rel="noopener">BIP035</a>)。当一笔交易被传到网络上后，它会首先被传播到一个验证节点上，存放在内存池中，然后再由当前节点传播转发至相邻节点。由此，研究者发现这种传播的一个特点：相邻节点的内存池中所存放的待打包交易有很大的重合。在这个前提下，相邻两个节点在传输一个刚挖出来的块的时候，大部分时间是在传输对方已经有的交易内容。如果只传输两个节点间不同的部分，就可以大大减少节点之间的通信。</p>
+<p>但是，区块内交易的顺序信息也需要被传输从而被验证。面这个排列的顺序，是节点在符合偏序排列的前提下决定的。因为这个原因，我们不能够仅仅传输与对方不重合的交易内容，我们还需要传输这个由矿工节点所决定的交易排列。</p>
+<h3 id="”Canonical-Transaction-Ordering”"><a href="#”Canonical-Transaction-Ordering”" class="headerlink" title="”Canonical Transaction Ordering”"></a>”Canonical Transaction Ordering”</h3><p>注意到</p>
+<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/bitcoin/bips/blob/master/bip-0035.mediawiki" target="_blank" rel="noopener">1</a> Joannes Vermorel and Amaury Séchet, “Canonical Transaction Ordering for Bitcoin,” n.d., 8.<br><a href="https://github.com/bitcoin/bips/blob/master/bip-0035.mediawiki" target="_blank" rel="noopener">2</a> Michael T. Goodrich and Michael Mitzenmacher, “Invertible Bloom Lookup Tables,” ArXiv:1101.2245 <a href>Cs</a>, January 11, 2011, <a href="http://arxiv.org/abs/1101.2245" target="_blank" rel="noopener">http://arxiv.org/abs/1101.2245</a>.</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/lialan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/alan0li">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

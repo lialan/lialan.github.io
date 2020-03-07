@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        A Zilliqa Technical Report - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Essays about Everything </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/media/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Alan Li</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tag">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Designs-of-Sharding-Mechanism"><span class="toc-text">Designs of Sharding Mechanism</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sharding-Mechanism-in-Zilliqa"><span class="toc-text">Sharding Mechanism in Zilliqa</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alternative-Designs"><span class="toc-text">Alternative Designs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#New-Smart-Contract-Platform"><span class="toc-text">New Smart Contract Platform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Team-and-community"><span class="toc-text">Team and community</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Acknowledgments"><span class="toc-text">Acknowledgments</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Essays about Everything </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        A Zilliqa Technical Report
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2018-12-01 05:43:56</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Blockchain" title="Blockchain">Blockchain</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#English" title="English">English</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>Note: This article is firstly published on FBG X’s WeChat public account. </p>
+<hr>
+<p><img src="/media/15393575754598.jpg" alt></p>
+<p>One of the primary selling points of the Zilliqa team is that at the launch of the main net, sharding will be supported. In fact, sharding is best served launching with the network, or the transition to the sharded state imposes a difficult hardfork.</p>
+<h2 id="Designs-of-Sharding-Mechanism"><a href="#Designs-of-Sharding-Mechanism" class="headerlink" title="Designs of Sharding Mechanism"></a>Designs of Sharding Mechanism</h2><p>In a distributed ledger system, there are 4 components that can be sharded:<br><img src="/media/15393575607792.jpg" alt></p>
+<p>Researchers and developers from Ethereum want to implement state sharding once and for all, and that imposes many difficulties in both design and implementation. Since the team is still iterating designs, it is expected that we will not see its sharding mechanism comes to live until 2020 or later.</p>
+<h3 id="Sharding-Mechanism-in-Zilliqa"><a href="#Sharding-Mechanism-in-Zilliqa" class="headerlink" title="Sharding Mechanism in Zilliqa"></a>Sharding Mechanism in Zilliqa</h3><p>The design of Zilliqa’s sharding mechanism is such that its phase one’s goal is to only shard transaction (including payment and smart-contract transaction) execution, but synchronize the machine state across shards. From the perspective of engineering, maintaining the same state across shards dramatically reduces the design complexity and indeed improves execution parallelism and speed compared to a non-sharding mechanism.</p>
+<p>Zilliqa has been questioned about its sharding, mostly about its non-state sharding approach. We agree that a non-state sharding is not a complete and comprehensive solution to scalability. A non-state solution involves extensive cross-shard interaction, including synchronization, propagation of state updates, etc. The to-and-from communication between shards increases latency and decreases responsiveness, hence impeding further performance gains.</p>
+<p>In the state-sharding approach, since different shards store the states exclusively, once a smart contract transaction involves in two states in different shards, cross-shard communication will be triggered. Frequent cross-shard communication will cause significant overhead and delay for transaction execution. The second challenge with state sharding is data availability. Once a shard is offline due to attacks, the states stored in that shard is not accessible by the other shards and transactions related to that shard won’t be executed anymore. The last hurdle is reshuffling for state sharding. To ensure the security guarantee, the random assignment of nodes to shards should be performed periodically. As each shard maintains the separate set of states, every node new to a shard has to sync with the old nodes. The synchronization of states will introduce a non-negligible overhead to the entire system.</p>
+<p>Ideally and economically, nodes in a shard should store only information relevant to itself and only when necessary, and irrelevant data are fetched from other shards. This approach minimizes the storage and reduces disk space requirement by a factor of the number of shards – at least that is the optimistic picture. However, we argue that such a design scheme splits the network and reduces mining power attack resistance proportionally. The more shards a network is split into, the easier an attacker will succeed. Take Ethereum for example, as of September 28th there are about 15,000 nodes in total running worldwide. Such number wouldn’t stand a small range attack should the network is split into 100 shards. </p>
+<p>Yet the most attacked point of such non-state sharding mechanism is that: replicating the complete network state across shards increases the storage burden of each node in the network. Without an efficient storage fee schedule, the node’s storage space will explode exponentially and go out of control. </p>
+<p>Zilliqa’s response to the storage explosion problem is not to store transaction logs on each of the nodes – only the latest ledger state is synchronized. This approach eliminates the disk space growth required to store ledger history and is only proportional to the number of total users (usually a very controllable number). In the meantime, Zilliqa has formed the partnership with distributed storage projects to seek solutions by offloading storage to the distributed storage network. Users can choose their preferred decentralized storage system and pay for the storage used by the smart contract running atop Zilliqa. Due to the three challenges mentioned above, the state-sharding approach can mitigate the storage problem, but won’t be the ultimate solution to it. A standalone decentralized storage system is necessary to all the scalable blockchain platforms.</p>
+<p>Randomness is the key to achieve a solution in this exact case. Zilliqa’s solution is to shuffle nodes across shards periodically. Simply put, by doing this, a malicious player is unable to concentrate resources to attack a single thread of the network – its computing power is forced to be dispersed randomly into different shards. Meanwhile, every shard has at least 600 nodes, which ensures the relative decentralization within a shard and guarantees the high-security level that with high probability (over 99.999999%) the shard won’t fail.</p>
+<p>One of the most difficult problems for sharding is to handle smart contracts, as the same smart contract may be executed in different shards simultaneously to cause data inconsistency issue, e.g., airplane and hotel problem. For state-sharding solutions, we can leverage 2-phase commit protocol or lock mechanism to ensure the sequential execution of different transactions of the same smart contract across shards. For Zilliqa, they employ an intelligent transaction assignment mechanism. They categorize transactions into payment transactions and simple contract transactions and complex contract transactions including recursively calling contracts. For payment transactions, they will be assigned to shards based on their senders’ addresses. For simple contract transactions, the assignment is relying on the sender and contract’s addresses. For the complex contract transactions,  a dedicated shard will handle them. Since the majority of the transactions are belonging to the first two categories, all the transactions including smart contract can be properly executed in parallel in different shards. As the future work, Zilliqa’s research team is working on optimizing the assignment of complex contract transactions with language support.</p>
+<p>We’ve interviewed Zilliqa’s CTO, Yaoqi Jia, about its engineering plan. He thinks Zilliqa’s approach is engineering appropriate, in that the delivery timeline strikes a balance between quality and delivery dates. </p>
+<p>He also mentioned that people tend to overlook the difficulty of the design and implementation of an ideal sharding mechanism inside a blockchain system. We agree with Yaoqi’s opinion, sharding is not an easy mission.</p>
+<h3 id="Alternative-Designs"><a href="#Alternative-Designs" class="headerlink" title="Alternative Designs"></a>Alternative Designs</h3><p>Zilliqa’s team has over 20 designs of sharding, the one plan they picked to implement is relatively practical (yet still quite complicated, as there is no simple solution to sharding) because they want to reduce the complexity when implementing and maintaining. </p>
+<p>Such a design enables the comprehensive sharding mechanism for payment and smart contract transactions, but it requires good network throughput to handle a large number of transactions, which is the same issue for all the scalable blockchains. </p>
+<h2 id="New-Smart-Contract-Platform"><a href="#New-Smart-Contract-Platform" class="headerlink" title="New Smart Contract Platform"></a>New Smart Contract Platform</h2><p>Instead of reusing existing smart contract execution platform such as Ethereum virtual machine, the Zilliqa blockchain is proposing its own smart contract solution. The smart contract platform is based on a newly proposed intermediate-level language called Scilla.</p>
+<p>We have observed that Scilla diverts from Zilliqa’s original proposal of following a dataflow programming paradigm. The data flow paradigm was proposed in the 1960s by Jack Dennis and is capable of handling large parallelism of data processing. But such streaming paradigm is best implemented in large scale, macro systems. Smart contract executions, on the other hand, is at a much smaller scale and is highly localized. We think that Zilliqa’s adaptation of functional paradigm instead of data flow paradigm is the right choice, as functional programming paradigm is much more widely used and verified.</p>
+<p>The new Scilla language is essentially a variation of an OCaml sub-language with an intrinsic support of functional programming paradigm.Unlike traditional imperative paradigm languages, functional languages usually provide additional safeguards to help writing secure computer programs. As a post has already pointed out:</p>
+<p>Scilla imposes a structure on smart contracts that will make applications less vulnerable to attacks by eliminating certain known vulnerabilities directly at the language-level. Furthermore, the principled structure of Scilla will make applications inherently safer.</p>
+<p>We have the following observations:</p>
+<ul>
+<li>Written in OCaml itself, the Scilla execution engine is natively compatible with Scilla language itself, making the interaction between the engine and the application more accessible.</li>
+<li>Compared with Ethereum VM bytecode, the Scilla language is a higher-level language, meaning its operators express more abstract semantics. In fact, you can look into their GitHub repository and read their smart contract demos, and can start writing your own contracts. Also, compared to other platforms, debugging in Scilla is more viable and easier, making a boost in productivity.</li>
+<li>The Succinctness of the semantics and the functional paradigm makes coding smart contracts in Scilla platform safer and securer. The Scilla language is designed to be an intermediate-level language, usually, an intermediate language in a compiler and virtual machine system is not intended to be operated by a human, but Scilla’s readability makes it operable by a human. In fact, we think developers are able to write smart contract code in Scilla after a short adjusting period.  </li>
+<li>Safety and security mechanism such as formal verification can be easily implemented for Scilla. It will be extremely easy to have Scilla platform along with its decentralized applications proven using formal verification. From this aspect, Scilla will later become a safe and secure executing platform at release and hence an excellent addition to the Zilliqa platform.</li>
+</ul>
+<p>We believe that the time-tested functional programming paradigm will be widely used in smart contract world because it needs a safe, principled and structural, highly productive language to be the fundamental component of the smart contract environment. Of course, there might be several difficulties in implementing the platform:</p>
+<ul>
+<li>Due to its high-level abstraction, some of Scilla’s operations do not have a fixed actual cost. Take the traditional functional function <code>fold</code> as an example, the cost of the actual machine execution varies from 0 to infinity. This makes implementing an accurate gas fee system difficult. In such case, traditional per operation fee schedule might not be sufficient to cover all the cases. Also using empirical solution – using a predefined fixed price might not fit for all real-world cases, and might cause vulnerabilities in economical attacks. In such case, following a smart contract executing fee schedule first introduced in Ethereum might not be sufficient, the team needs to look for a new fee-based system for their system to make it fair enough to use and robust enough to hold against potential economical attacks. </li>
+<li>The proposed smart contract solution, including the Scilla intermediate language and its virtual machine and a bundle of toolkits, requires a large amount of work before it can be published. Not only does the team need to rebuild the execution engine from scratch (the team might not be able to find or reuse open source components), but also the community and the team have to build developer tools such as Scilla compilers, transpilers (a compiler that takes other smart contract source code such as Solidity contracts and outputs Scilla code), etc. A large amount of workload demands a tighter relationship between the developer team and the community. </li>
+<li>The implementing of Scilla is a starting point of functional languages entering smart contract infrastructure. The paradigm shift of the language requires a shift of the developer’s skills as well. Without supporting development tools such as transpilers, developers not coming from a functional programming background or unfamiliar with it will face a period of adjustment before they can write correct and efficient Scilla contract code.  </li>
+<li>The team plans to launch their main net in December/Jan (delayed from September this year) and at the time of launch, the intermediate-level language based smart contract execution engine and some dev tools like IDE will be ready. All other decentralized application (Dapp) development support, including Solidity, javascript programming capabilities, debug support, etc, will be arriving later than Zilliqa’s main net launch.</li>
+<li>To boost their early ecosystem building, the team has set up an ecosystem grant of 5 million US dollars in total, for incentivizing community members to help alleviate the gap by starting to write Scilla based smart contracts. Overall, Zilliqa’s main net launch is likely to have a few Dapps running. Our observation is that the framework can support essential applications, such as launching a token or ICO. Zilliqa will provide formal verification of those applications to ensure correct execution.</li>
+</ul>
+<p>Something worth mentioning: some developers have expressed concerns over their non-Turing complete language design might impact the development of Dapp on Zilliqa. As far as we know, the designers of Scilla removes looping operations in the language so that the program won’t dead loop or consume too many resources. Removing looping operations will result in a straightforward execution flow, making the compiler and virtual machine doing optimizations easier, but might cause the code size to increase (which is not a good thing if the contract is stored on-chain). </p>
+<p>You can try and experiment Scilla language at <a href="https://scilla-lang.org/" target="_blank" rel="noopener">https://scilla-lang.org/</a>. At this moment, it comes with an online IDE at <a href="https://savant-ide.zilliqa.com/" target="_blank" rel="noopener">https://savant-ide.zilliqa.com/</a>. The IDE helps you check your program parsing errors and type checking. Currently, there are several example smart contracts that you can do your experiments on.</p>
+<p>The hands-on experience of Scilla is overall fascinating. As a person from a functional programming background, I like Scilla’s language features such as pattern matching and algebraic data types (ADTs). They are natural to use and as convenient as coding in other functional languages. Using Scilla, one does not feel like writing in an intermediate-level language such as LLVM IR. Communications are done via messages, which are simply defined in JSON format. Language primitives such as <code>send</code> are exposed to users. A standard utility function library is provided.</p>
+<h2 id="Team-and-community"><a href="#Team-and-community" class="headerlink" title="Team and community"></a>Team and community</h2><p>The team has about 20 people, the majority of the group are developers. 4 People are working on their new smart contract language support, and the rest of the dev team are working on the core protocol development and prepare for the main net launch. </p>
+<p>The team is development-oriented and result-driven. The tech team has enthusiastic and capable. On the other hand, their business development and marketing team (which is only a small part of the whole team) is starting to ramp up their effort so as to deliver more results around the adoption of the platform. Good news is that they just hired CMO from Google and Vice President for BD to improve their marketing and business strategy. Meanwhile, they also started a project called Proton with Mindshare, Mediamath, Rubicon Project, Integral Ad Science (IAS) and Underscore CLT, which all are big players in the digital advertising market. </p>
+<p>Zilliqa online development community is active, and members are enthusiastic, as described by Yaoqi Jia, Zilliqa’s Head of Technology. The team has established R&amp;D grants of 5 million US dollars in total for the community Now community members can get the grant or reward by building tools like wallets, Dapps and other components like state channel for Zilliqa.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li>The Zilliqa Technical Whitepaper;</li>
+<li>“Limitations of Zilliqa’s Sharding Approach” Alexander Skidanov;</li>
+<li>“The Many Faces of Sharding for Blockchain Scalability” Bitcoin Magazine;</li>
+<li>“Provisioning Sharding for Smart Contracts: A Design for Zilliqa” Amrit Kumar;</li>
+<li>“Scilla: A Smart Contract Intermediate-Level Language” Ilya Sergey, Amrit Kumar, and Aquinas Hobor;</li>
+<li>“Provisioning Sharding for Smart Contracts: A Design for Zilliqa” Amrit Kumar;</li>
+<li>“Diving into Scilla: A Safe-by-Design Smart Contract Language” Adrian Irimia;</li>
+</ul>
+<h2 id="Acknowledgments"><a href="#Acknowledgments" class="headerlink" title="Acknowledgments"></a>Acknowledgments</h2><p>We would like to thank:</p>
+<ul>
+<li>Dr. Yaoqi Jia, Zilliqa’s CTO,</li>
+<li>Dr. Xinshu Dong, Zilliqa’s CEO, </li>
+<li>Dr. Amrit Kumar, Zilliqa’s Head of Research<br>for the help of clarifying the technology details.</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/lialan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/alan0li">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

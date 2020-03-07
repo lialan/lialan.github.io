@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Impressions from LLVM Dev Meetup 2019 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Essays about Everything </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/media/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Alan Li</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tag">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Overall-impressions"><span class="toc-text">Overall impressions</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MLIR"><span class="toc-text">MLIR</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GlobalIsel"><span class="toc-text">GlobalIsel</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code-Generation"><span class="toc-text">Code Generation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Essays about Everything </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Impressions from LLVM Dev Meetup 2019
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-10-29 21:35:24</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Compiler" title="Compiler">Compiler</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#English" title="English">English</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Overall-impressions"><a href="#Overall-impressions" class="headerlink" title="Overall impressions"></a>Overall impressions</h1><p>This year, there were 630 LLVM developers from all around the world joining together to discuss compiler technologies that nobody else really cares. As someone who works on compilers, you cannot miss this opportunity to join this annual circlejerk. So I paid for the venue ticket, booked a 2-night AirBnb, and took the red eyes to San Jose.</p>
+<p>So what did I find? Compiler engineers are still in high demand in 2019. Job hire flyers from big players such as Google, Facebook, Apple, Microsoft… you name it, are all over the place. Good luck finding a good compiler developer in the Bay area if your company thinks paying USD$300k-500k for a senior engineer is too much. Very unfriendly for infrastructure startups. I miss the time when Borland was still alive and kicking, and people could still start a business monetizing on archaic compiler technologies.</p>
+<p><img src="/media/llvm_meetup.png" alt></p>
+<h1 id="MLIR"><a href="#MLIR" class="headerlink" title="MLIR"></a>MLIR</h1><p>MLIR is obviously the single hottest topic in the meetup. Tuesday’s MLIR roundtable took up most space of the room. Developers are eager to know more from the TensorFlow team.</p>
+<p>(If you want to know more about MLIR, here is the a background literature: <a href="https://ai.google/research/pubs/pub48035" target="_blank" rel="noopener">https://ai.google/research/pubs/pub48035</a> )</p>
+<p>MLIR’s adaptability and versatility is immensely useful to compiler developers. Although the most obvious and immediate use case of MLIR is definitely machine learning compiler optimizations, and frontend development such as building DSLs, it can also be adopted to both the frontend codegen and the machine level codegen. For example, no one forbids you to convert machine IR to MLIR and do some specific analysis and optimizations then convert it back. It will not take too long to see LLVM backends utilize MLIR to do more sophisticated optimizations.</p>
+<p>Chris Lattner specifically mentioned that there are no immediate intends to replace LLVM IR with MLIR, at least for the coming year or two. This is true, people are still investing heavily into LLVM IR infrastructure, and MLIR still needs some time to mature itself. However, I feel that given the strong similarity (MLIR being a superset of LLVM IR actually), soon there will likely be attempts to migrate works to MLIR — if people think MLIR is a better vehicle for that particular job.</p>
+<p>Developers tries to do specific optimizations in frontends such as Clang because when lowering to LLVM IR, some information on the AST is lost and unretrievable. Metadata is a good way to store additional information but the frontend cannot enforce backends on taking actions on metadata. That is the reason there are dedicated IRs for specific languages: Julia has SIR, and Rust has HIR and MIR, et cetera. Using MLIR could make creating new programming languages easier without the need for a dedicated higher-level IR — parse whatever you have in the source code into AST, lower it to MLIR, do a bunch of analysis and optimizations, lower to LLVM IR, sent it to a backend, done. Never been simpler.</p>
+<p>So can I use MLIR today? In production mode? Eric Schweitz from NVIDIA presented their work on using MLIR to optimize the good old, steam-driven Fortran. They specialized MLIR to their FIR dialect and do a bunch of memory and loop optimizations. So, yeah, MLIR is usable now, if you don’t mind developer team’s rapid version iterations break your build.</p>
+<h1 id="GlobalIsel"><a href="#GlobalIsel" class="headerlink" title="GlobalIsel"></a>GlobalIsel</h1><p>The opening keynote were about the progress of GlobalIsel (Global Instruction Selection). This work for now is mostly about reducing compile time. Engineers from Apple showcased the approach on stage, and announced that the iOS 13 is compiled using GlobalISel enabled, without any other bluffing PR bullshit. It was epic.</p>
+<p>Currently, most backends are using traditional SelectionDAG module for instruction selection, which requires the SelectionDAG IR. The GlobalISel wants to remove the SelectionDAG IR component once and for all and go straightly to Machine IR, meanwhile doing instruction selection on a bigger scale than basicblocks. Some background info can be found here: <a href="https://llvm.org/docs/GlobalISel.html" target="_blank" rel="noopener">https://llvm.org/docs/GlobalISel.html</a></p>
+<p>Like SelectionDAG, GlobalISel will have a declarative language based on tablegen. This is why I think compiler technology is great software techniques: After years of research and development, abstractions after abstractions, target-specific components are more and more declarative.</p>
+<p>The adoption of GlobalIsel will be gradual. A backend could start with full SelectionDAG approach, and incrementally implement their strategy in GlobalISel. The GlobalISel module will be the first option, and in case of failure, falls back to SelectionDAG, without breaking the build. The backend can continue to improve the GlobalISel until it does not fallback anymore before it can totally ditch SelectionDAG.</p>
+<p>Apple reported a huge compile time improvement after switching. New backend developments should start considering adopting GlobalISel.</p>
+<h1 id="Code-Generation"><a href="#Code-Generation" class="headerlink" title="Code Generation"></a>Code Generation</h1><p>MediaTek presented their work on using Souper (<a href="https://arxiv.org/abs/1711.04422" target="_blank" rel="noopener">https://arxiv.org/abs/1711.04422</a>) to do target machine specific peephole superoptimization. Because Souper operates on LLVM IR, there is a missing link between the LLVM IR and actual machine code generated. The team came up with a cost prediction model utilizing LLVM MC Analyzer to map between particular LLVM IR structures with generated machine code, hence finds a way to back track the target machine specific cost model to LLVM IR. This idea could be implemented in Machine IR level, yielding a more precise and more target-specific cost model mapping between MIR and generated machine code. Furthermore, it could be designed to be a generic peephole pass with some target-specific elements, and those target-specific elements could be implemented using tablegen.</p>
+<p>Jin Lin from Uber presented their approach to reduce the Uber iOS app code size at LTO time. The idea is quite simple — wait until link time when you have the full scope visibility of the program, then do as much outlining and function eliminating/combining as possible. This worked pretty well on Uber app. So what is the takeaway from this? A compiler engineer is invaluable even for a company like Uber. The improvements on toolchain is greatly impactful on the end product’s performance.</p>
+<p>Another very practical session I attended was presented by Alexandre Ganea from Ubisoft on reducing build time on Windows machines. When building a game from scratch takes longer than anyone can bear, they fine tuned the incremental build system to make an incremental build less than 3 minutes. It is another example showcasing how a toolchain developer can drastically improve the productivity of the whole team without change of routines. Simply impressive.</p>
+<p>I met with Thomas the WebAssembly LLVM backend maintainer, and Dimitry who works on the TON (The Telegram blockchain) compiler, at Dimitry’s session where he wants everybody’s input on how we can produce better stack machine codes. We all agree that the LLVM could use some generic infrastructure to improve the code quality of stack machine code generation. We are thinking to start our collaborated contribution with a RFC.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This is a conference for sharing practical, no-bullshit engineering ideas. I like it very much — the talks are so practical I can immediately relate those topics to my work scenarios. I paid for two conferences this month: Devcon5 and LLVM Dev Meetup. Although Osaka is a great city to visit, I still think my experiences at Devcon5 was very underwhelming. On the other hand, the LLVM meetup, being an only 2-day conference, has much less bullshit and much more good ideas that I can immediately relate to. I will definitely come back next year.</p>
+<blockquote>
+<p>Note: this was originally published at: <a href="https://medium.com/@lonelydove/impressions-from-llvm-dev-meetup-2019-954c3887a675" target="_blank" rel="noopener">https://medium.com/@lonelydove/impressions-from-llvm-dev-meetup-2019-954c3887a675</a></p>
+</blockquote>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/lialan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/alan0li">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
