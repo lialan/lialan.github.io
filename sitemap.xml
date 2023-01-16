@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://alanli.org/</loc>
+    <lastmod>2023-01-14T16:57:34-08:00</lastmod>
+  </url><url>
+    <loc>https://alanli.org/posts/</loc>
+    <lastmod>2023-01-14T16:57:34-08:00</lastmod>
+  </url><url>
+    <loc>https://alanli.org/%E6%99%AE%E9%80%82%E4%BB%B7%E5%80%BC/</loc>
+    <lastmod>2023-01-14T16:57:34-08:00</lastmod>
+  </url><url>
+    <loc>https://alanli.org/categories/</loc>
+  </url><url>
+    <loc>https://alanli.org/tags/</loc>
+  </url>
+</urlset>
